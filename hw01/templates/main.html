@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="container py-5">
+    <h1> Wiki по Metal Gear Rising: Revengeance </h1>
+    <ul>
+        {% for group in groups %}
+            <li>    
+                <h5 class="nav-link" href="{% url 'core:group' group.0 %}">{{group.1}}</h5>
+            </li>
+        {% endfor %}
+{% endblock %}
+
+
+

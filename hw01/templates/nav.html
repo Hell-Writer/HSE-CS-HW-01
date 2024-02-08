@@ -1,0 +1,17 @@
+{% load static%}
+<header>
+  <nav class="navbar navbar-light" style="background-color: lightgrey">
+    <div class="container">
+      {% with request.resolver_match.view_name as view_name %}
+      <ul class="nav nav-pills">
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name  == 'core:main' %}link-light active{% else %}text-dark{% endif %}" href="{% url 'core:main' %}">Главная страница</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name  == 'core:task' %}link-light active{% else %}text-dark{% endif %}" href="{% url 'core:task' %}">Решение задачи</a>
+        </li>
+      </ul>
+      {% endwith %}
+    </div>
+  </nav>      
+</header> 
