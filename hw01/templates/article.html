@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+{% load thumbnail %}
+
+<div class="container py-5">
+    <h1> {{article.title}}</h1>
+    <ol>
+        {% if article.image %}
+        <li><a class="nav-link" href="#photo"> Фото </a></li>
+        {% endif %}
+        <li><a class="nav-link" href="#text"> Текст </a></li>
+        <li><a class="nav-link" href="#author"> Автор </a></li>
+    </ol>
+    {% if article.image %}
+    <div id="photo"><img src="{{ article.image.url }}" height="200"></div>
+    {% endif %}
+    <div id="text">{{article.text}}</div>
+    <div id="author">Автор: {{article.author}}</div>
+{% endblock %}

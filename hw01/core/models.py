@@ -15,6 +15,10 @@ class Article(models.Model):
         'Текст',
         help_text='Введите текст'
     )
+    slug = models.SlugField(
+        'Слаг',
+        unique=True
+    )
     pub_date = models.DateTimeField(
         'Время публикации',
         auto_now_add=True,

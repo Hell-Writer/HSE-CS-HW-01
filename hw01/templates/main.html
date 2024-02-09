@@ -8,7 +8,9 @@
     <ul>
         {% for group in groups %}
             <li>    
-                <h5 class="nav-link" href="{% url 'core:group' group.0 %}">{{group.1}}</h5>
+                <a class="nav-link" href="{% url 'core:group' group.0 %}">
+                    <h5>{{group.1}}</h5>
+                </a>
             </li>
         {% endfor %}
 {% endblock %}

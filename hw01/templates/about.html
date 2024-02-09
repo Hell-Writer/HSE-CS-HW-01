@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+<div class="container py-5">
+    <h1>Об авторе и его друзьях</h1>
+    <ul>
+        <li>Моё имя: {{my.name}}</li>
+        <ul>
+            <li>Мейл: {{my.mail}}</li>
+            <li>Телефон: {{my.phone}}</li>
+            <li>Образовательные квалификации: {{my.educ}}</li>
+            <li><img src={{my.imgurl}} height="150"></li>
+        </ul>
+        <li>Название ОП: {{program.name}}</li>
+        <ul>
+            <li>Описание ОП: {{program.description}}</li>
+        </ul>
+        <li>Руководитель ОП: {{program.ruk.name}}</li>
+        <ul>
+            <li>Мейл: {{program.ruk.mail}}</li>
+            <li><img src={{program.ruk.imgurl}} height="150"></li>
+        </ul>
+        <li>Менеджер ОП: {{program.man.name}}</li>
+        <ul>
+            <li>Мейл: {{program.man.mail}}</li>
+            <li><img src={{program.man.imgurl}} height="150"></li>
+        </ul>
+        <li>Наименование друга1: {{pal1.name}}</li>
+        <ul>
+            <li>Мейл: {{pal1.mail}}</li>
+            <li>Телефон: {{pal1.phone}}</li>
+            <li><img src={{pal1.imgurl}} height="150"></li>
+        </ul>
+        <li>Наименование друга2: {{pal2.name}}</li>
+        <ul>
+            <li>Мейл: {{pal2.mail}}</li>
+            <li>Телефон: {{pal2.phone}}</li>
+            <li><img src={{pal2.imgurl}} height="150"></li>
+        </ul>
+    </ul>
+</div>
+{% endblock %}
