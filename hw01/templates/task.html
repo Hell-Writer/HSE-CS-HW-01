@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load thumbnail %}
+
+<div class="container py-5">
+
+    <form action="{% url 'core:task' %}" method="post">
+        {% csrf_token %}
+        <p>Можно ли из бревна, имеющего диаметр поперечного сечения D, выпилить квадратный брус шириной A?</p>
+        <p>{{form}}</p>
+    <input type="submit" value="Получить ответ">
+    </form>
+</div>
+
+{% endblock %}

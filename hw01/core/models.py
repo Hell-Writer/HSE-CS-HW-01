@@ -6,14 +6,30 @@ from hw01.settings import GROUPS
 User = get_user_model()
 
 
-class Article(models.Model):
-    title = models.TextField(
-        'Заголовок',
-        help_text='Введите заголовок'
+class Contact(models.Model):
+    name = models.CharField(
+        'Имя',
+        max_length=100
     )
     text = models.TextField(
-        'Текст',
-        help_text='Введите текст'
+        'Текст'
+    )
+    email = models.EmailField(
+        'Почта'
+    )
+    date = models.DateTimeField(
+        'Время отправки',
+        auto_now_add=True,
+        db_index=True
+    )
+
+
+class Article(models.Model):
+    title = models.TextField(
+        'Заголовок'
+    )
+    text = models.TextField(
+        'Текст'
     )
     slug = models.SlugField(
         'Слаг',
@@ -33,14 +49,12 @@ class Article(models.Model):
     group = models.CharField(
         choices=GROUPS,
         max_length=150,
-        verbose_name='Раздел',
-        help_text='Выберите раздел'
+        verbose_name='Раздел'
     )
     image = models.ImageField(
         'Картинка',
         upload_to='images/',
-        blank=True,
-        help_text='Прикрепите картинку'
+        blank=True
     )
 
     def __str__(self):

@@ -1,13 +1,32 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from .models import Article
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from .models import Article, Contact
 from hw01.settings import GROUPS
+from math import sqrt
+from .forms import TaskForm, ContactForm
+from django.http import HttpResponseRedirect
+from django.views.generic.edit import CreateView
+from time import sleep
 
 
 def main_page(request):
     template = 'main.html'
     context = {'groups': GROUPS}
     return render(request, template, context)
+
+
+class ContactView(CreateView):
+    form_class = ContactForm
+    template_name = 'contact.html'
+    contact = Contact()
+    form = ContactForm(instance=contact)
+    context = {'form': form}
+    success_url = reverse_lazy('core:contact_thx')
+
+
+def contact_thx(request):
+    return render(request, 'thx.html')
+
 
 
 def group_page(request, group):
@@ -23,12 +42,30 @@ def article_page(request, slug):
     context = {'article': article}
     return render(request, template, context)
 
-def contact(request):
-    return redirect('core:main')
-
 
 def task(request):
-    return redirect('core:main')
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            a = form.cleaned_data["a"]
+            d = form.cleaned_data["d"]
+            return task_answer(request, a, d)
+    else:
+        form = TaskForm()
+    template = 'task.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def task_answer(request, a, d):
+    task_str = f'Можно ли из бревна, имеющего диаметр поперечного сечения {d}, выпилить квадратный брус шириной {a}'
+    if sqrt(2)*a<=d:
+        ans='Да'
+    else:
+        ans='Нет'
+    template = 'answer.html'
+    context = {'answer': ans, 'question': task_str}
+    return render(request, template, context)
 
 
 def about(request):
@@ -72,4 +109,4 @@ def about(request):
 
 
 def tech(request):
-    return redirect('core:main')
+    return render(request, 'tech.html')
