@@ -9,4 +9,4 @@ class TaskForm(forms.Form):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ["name", "text", "email"] 
+        fields = ["name", "text", "email", "title"] 

@@ -11,6 +11,10 @@ class Contact(models.Model):
         'Имя',
         max_length=100
     )
+    title = models.CharField(
+        'Заголовок',
+        max_length=250
+    )
     text = models.TextField(
         'Текст'
     )
@@ -23,6 +27,13 @@ class Contact(models.Model):
         db_index=True
     )
 
+    def __str__(self):
+        return self.title[:50]
+
+    class Meta:
+        ordering = ('-date',)
+        verbose_name = 'Письмо от пользователя'
+        verbose_name_plural = 'Письма от пользователей'
 
 class Article(models.Model):
     title = models.TextField(
